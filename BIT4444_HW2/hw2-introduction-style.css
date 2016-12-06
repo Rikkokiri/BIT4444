@@ -1,0 +1,343 @@
+/*
+@author Pilvi Rajala (piraj)
+*/
+/*
+In Assignment 1, you were asked to develop an introduction page to BIT concentrations.
+- Make sure that you provide a paragraph of introductory text for each concentration on the page.
+- Define an external CSS style sheet that meets the following requirements.
+- The external CSS sheet must be linked to the introduction page to BIT concentrations.
+
+(1) -- DONE --
+  Box model:
+  - Specify margin
+  - border (width, style, color)
+  - padding
+  - and background color properties for the two concentration paragraphs.
+  (20 points)
+
+(2) -- DONE --
+  Box shadow:
+
+  Shadow the boxes that contain the two concentration paragraphs.
+  - The Shadow should be projected at the bottom and right sides of the box.
+  (10 points)
+
+(3) -- DONE --
+  Drop-down menu:
+
+  Make a drop-down menu on the introductory page.
+  - OK The menu should display "BIT Concentrations" when the mouse is not hovering it.
+  - OK When the mouse is hovering it, the menu should display two menu items,
+    "Decision Support Systems" and "Operations Management", underneath "BIT Concentrations".
+  - OK When the mouse is hovering on a menu item,
+    the menu item's background color and font style should change.
+  - OK When a menu item is clicked, it should link to an internal linking created for the corresponding concentration paragraph.
+  (20 points)
+
+(4) -- DONE --
+  Animation:
+- Place a logo image on the page and create an infinite animation of moving the logo in a square pattern.
+(20 points)
+*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0px 0px 120px; /* bottom = footer height */
+  padding:0 0 50px 0;
+  font-family: sans-serif;
+}
+
+main {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+div.intro {
+  margin: 30px 30px 40px 25px;
+  padding: 0px 30px 0px 25px;
+}
+
+/* -*-*-*-*-*-*- HEADERS -*-*-*-*-*-*- */
+
+header#pamplin-header {
+  background-color: #600;
+  margin-bottom: 0;
+  padding: 0;
+  border-bottom: 1px solid white;
+}
+
+header#bit-header {
+  background-image: url(../hw1-images/stars.png);
+  /*background-color: #000;*/
+  background-size: cover;
+  height: 60px;
+  margin-top: 0;
+}
+
+/* -*-*-*-*-*-*- DROPDOWN MENU -*-*-*-*-*-*- */
+
+ul.dropdown {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #600;
+}
+
+nav a.dropdown-button {
+  display: inline-block;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 15px 20px 15px 20px;
+  cursor: pointer;
+}
+
+ul.dropdown-content {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.dropdown-content {;
+  display: none;
+  position: absolute;
+  background-color: #ff6600;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  display: block;
+  color: white;
+  padding: 15px 20px;
+  text-decoration: none;
+  min-width: 180px;
+  text-align: center;
+}
+
+/* Display the dropwdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+nav a:hover{
+    background-color: #400; /*#ff6600;*/
+}
+
+.dropdown-content a:hover {
+  background-color: #db5602;
+  font-style: italic;
+  font-weight: bolder;
+}
+
+nav a:visited {
+  color: #fff;
+}
+
+/* -*-*-*-*-*-*- VT Logo styling & animation -*-*-*-*-*-*- */
+
+div.animated-logo {
+  margin: 0 auto;
+  display: block;
+  width: 100px;
+  height: 150px;
+  position: relative;
+
+  /* Animation */
+  animation-name: logoanimation;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+
+  -webkit-keyframes-animation-name: logoanimation;
+  -webkit-keyframes-animation-duration: 5s;
+  -webkit-keyframes-animation-iteration-count: infinite;
+  -webkit-keyframes-animation-delay: 1s;
+
+  -moz-animation-name: logoanimation;
+  -moz-animation-duration: 5s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-delay: 1s;
+
+  -o-animation-name: logoanimation;
+  -o-animation-duration: 5s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-delay: 1s;
+
+}
+
+@keyframes logoanimation {
+  0% {left: 50px; top: 0px;}
+  20% {left: 100px; top: 0px;}
+  40% {left: 100px; top: 100px;}
+  60% {left: 0px; top: 100px;}
+  80% {left: 0px; top: 0px;}
+  100% {left: 50px; top: 0px;}
+}
+
+@-webkit-keyframes logoanimation {
+  0% {left: 50px; top: 0px;}
+  20% {left: 100px; top: 0px;}
+  40% {left: 100px; top: 100px;}
+  60% {left: 0px; top: 100px;}
+  80% {left: 0px; top: 0px;}
+  100% {left: 50px; top: 0px;}
+}
+
+@-moz-keyframes logoanimation {
+  0% {left: 50px; top: 0px;}
+  20% {left: 100px; top: 0px;}
+  40% {left: 100px; top: 100px;}
+  60% {left: 0px; top: 100px;}
+  80% {left: 0px; top: 0px;}
+  100% {left: 50px; top: 0px;}
+}
+
+@-o-keyframes logoanimation {
+  0% {left: 50px; top: 0px;}
+  20% {left: 100px; top: 0px;}
+  40% {left: 100px; top: 100px;}
+  60% {left: 0px; top: 100px;}
+  80% {left: 0px; top: 0px;}
+  100% {left: 50px; top: 0px;}
+}
+
+/* -*-*-*-*-*-*- DSS & OSM paragrap boxes -*-*-*-*-*-*- */
+
+  /* (2) Box shadow */
+div.dss, div.osm {
+  box-shadow: 7px 7px 20px #474747;
+  margin: 30px 30px 60px 30px;
+  padding: 0px 30px 20px 30px;
+}
+
+div.dss {
+  border: 3px dotted #800;
+  background-color: #ffb380;
+  border-radius: 15px;
+}
+
+div.osm {
+  border: 3px dotted #800;
+  background-color: #ffc6b3;
+  border-radius: 15px;
+}
+
+/* -*-*-*-*-*-*- Heading styles -*-*-*-*-*-*- */
+
+h1#bit-heading {
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  margin-top: 0;
+  padding-top: 20px;
+  text-align: center;
+}
+
+h1, h2 {
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  margin-left: 25px;
+  padding-left: 25px;
+}
+
+#undergraduate-programs-heading {
+  font-size: 200%;
+  font-weight: 900;
+  text-align: center;
+}
+
+#dss-heading, #osm-heading {
+  padding-top: 20px;
+  font-weight: 600;
+}
+
+
+/* -*-*-*-*-*-*- Paragraph stylign -*-*-*-*-*-*- */
+
+p {
+  font-family: sans-serif; /*Back-up fonts listed to avoid compability issues. */
+  font-size: 14px;
+  line-height: 120%;
+}
+
+.course-link {
+  display: inline-block;
+  text-indent: 30px;
+}
+
+.program-description {
+
+}
+
+.paragraph-before-list {
+  margin-bottom:0;
+}
+
+.paragraph-after-list {
+  margin-top:0;
+}
+
+
+/* -*-*-*-*-*-*- List styles -*-*-*-*-*-*- */
+
+ul {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.no-markers-list {
+  list-style-type: none;
+  line-height: 140%;
+}
+
+.profession-list {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+/* -*-*-*-*-*-*- FOOTER -*-*-*-*-*-*- */
+
+footer.page-footer {
+  background-color: #333;
+  width: 100%;
+  height: 120px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  color: #fff;
+  text-align: center;
+  font-family: 'Lato', sans-serif; /* TODO Is it really necessary to mess with fonts? */
+}
+
+div.footer-copyright {
+  margin: 0 auto;
+  width: 200px;
+  height: 40px;
+  line-height: 120px;
+  text-align: center;
+}
+
+.footer-copyright p {
+  /*position: relative;*/
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+footer.page-footer img.vt-logo {
+  height: 40px;
+  float: left;
+  padding-left: 50px;
+}
