@@ -1,0 +1,58 @@
+/*
+@author Pilvi Rajala (piraj)
+*/
+
+html, body {
+  /* Removes white space around the header image */
+  margin: 0;
+  padding: 0;
+}
+
+#main-courses-heading {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#dss-courses-heading {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#osm-courses-heading {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* TODO Style better! */
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table {
+  margin: 0 auto;
+  width: 85%;
+}
+
+th {
+  text-align: center;
+  padding: 10px;
+  background-color: #800000;
+  color: #fff;
+}
+
+td {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+td.preq {
+  text-align: left;
+}
+
+p.top-link {
+  text-align:center;
+}

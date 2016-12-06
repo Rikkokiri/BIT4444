@@ -1,0 +1,105 @@
+/* NAV */
+
+nav.nav-bar {
+  /*
+    background-color: #000;
+    color: #fff;
+    */
+}
+
+.page-header {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0px 0px 120px; /* bottom = footer height */
+  padding:0 0 50px 0;
+  font-family: sans-serif;
+}
+
+/* MAIN */
+
+main {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  padding-bottom: 50px;
+}
+
+article#differences {
+  display: table;
+  width; 100%;
+}
+
+
+.dss-desc {
+  display: table-cell;
+  float: left;
+  width: 45%;
+  padding: 0 20px;
+}
+
+.osm-desc {
+  display: table-cell;
+  float: right;
+  width: 45%;
+  padding: 0 20px;
+}
+
+.jobs {
+  padding: 0 15px 15px 15px;
+  margin-top: 30px;
+}
+
+aside.companies {
+  display: block;
+  border: 1px solid black;
+  float: right;
+  padding: 10px 20px 10px 10px;
+  margin: 10px 10px 10px 10px;
+}
+
+aside.companies h4 {
+  text-align: center;
+}
+
+/* TITLES */
+h2 {
+  font-family: 'Lato', sans-serif;
+}
+
+/* FOOTER */
+
+footer.page-footer {
+  background-color: #333;
+  width: 100%;
+  height: 120px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  color: #fff;
+  text-align: center;
+  font-family: 'Lato', sans-serif; /* TODO Is it really necessary to mess with fonts? */
+}
+
+footer.footer-copyright {
+  position: relative;
+}
+
+footer.page-footer img.vt-logo {
+  height: 40px;
+  float: left;
+  padding-left: 50px;
+}
+
+#dss-meme, #osm-meme {
+  margin: 10px 20px 10px 20px;
+}

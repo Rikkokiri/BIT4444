@@ -1,0 +1,77 @@
+/*
+@author Pilvi Rajala (piraj)
+*/
+
+html, body {
+  /* Removes white space around the header image */
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+/* Heading stylign */
+
+h1, h2 {
+  font-family: 'Lato', sans-serif;
+}
+
+#undergraduate-programs-heading {
+  font-size: 200%;
+  font-weight: 900;
+}
+
+#dss-heading, #osm-heading {
+  padding-top: 20px;
+  font-weight: 600;
+}
+
+
+/* Paragraph styles */
+
+p {
+  font-family: sans-serif; /*Back-up fonts listed to avoid compability issues. */
+  font-size: 14px;
+  line-height: 120%;
+}
+
+.course-link {
+  display: inline-block;
+  text-indent: 30px;
+}
+
+.program-description {
+
+}
+
+.paragraph-before-list {
+  margin-bottom:0;
+}
+
+.paragraph-after-list {
+  margin-top:0;
+}
+
+
+/* List styles */
+
+ul {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.no-markers-list {
+  list-style-type: none;
+  line-height: 140%;
+}
+
+.profession-list {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}

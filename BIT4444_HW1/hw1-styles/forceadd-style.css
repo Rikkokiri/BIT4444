@@ -1,0 +1,87 @@
+/*
+@author Pilvi Rajala (piraj)
+*/
+
+html, body {
+  /* Removes white space around the header image */
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styling */
+
+header#pamplin-header {
+  background-color: #600;
+  margin-bottom: 0;
+  padding: 0;
+  height:90px;
+}
+
+header#pamplin-header img {
+  height: 90px;
+  float:left;
+}
+
+header.force-add {
+  background-color: #600;
+  height: 50px;
+}
+
+h1.force-add {
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  font-size: x-large;
+  margin-top: 0;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+/* Return link to introduction page */
+
+a.return-link {
+  font-family: 'Lato', sans-serif;
+  display: block;
+  text-indent: 40px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+}
+
+/* Main body */
+
+main {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
+
+  font-family: sans-serif;
+}
+
+
+
+.submission-disclaimer {
+  padding-top: 20px;
+  display: block;
+  text-align: center;
+}
+
+p.buttons {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+input[type=submit], input[type=reset]{
+  margin-right: 20px;
+  margin-left: 20px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+  background: #800;
+  border-color: #700;
+}

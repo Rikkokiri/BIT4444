@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+  Create a BIT course force-add request page. The page contains a request form which has the
+  following fields:
+  - request date and time
+  - OK requested semester
+  - OK requested CRN number
+  - OK requester pid
+  - OK requester email,
+  - OK requester phone number
+  - OK and reason for request.
+
+  The user must specify the requested semester using
+  - OK a year drop-down list (2016, 2017)
+  - OK and a semester radio button (Spring, Summer I, Summer II, Fall, Winter).
+
+  Use
+  - two checkboxes to indicate two possible reasons for request:
+    - 1. The class is full;
+    - 2. Prereqs need to be waived.
+  The user can check both.
+
+  Use HTML5 input types that are self-validating for email and phone number.
+  Use placeholder and auto-completion for text fields.
+  Use the datalist element to provide input options for the requested CRN number. All fields are required.
+  Add a link to return back to page in 1).
+  -->
+
+  <head>
+    <title>Force-Add</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Pilvi Rajala"/>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="hw1-styles/forceadd-style.css" />
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+  </head>
+  <body>
+    <!-- Pampling College of Business header image -->
+    <header id="pamplin-header">
+      <img src="hw1-images/pamplin-banner-selfmade.png" alt="Virginia Tech - Pampling College of Business" height="120" />
+    </header>
+
+    <header class="force-add">
+      <!--<img src="hw1-images/pamplin-banner-shorter.png" alt="Virginia Tech - Pampling College of Business" height="120" />-->
+      <h1 class="force-add">Force-Add Request Form</h1>
+    </header>
+
+    <p>
+      <a href="introduction.html" class="return-link">< Return to BIT Introduction Page</a>
+    </p>
+
+    <main>
+      <!-- THE FORM -->
+      <form method="post" action="http://www.bit.vt.edu">
+
+        <!-- REQUESTER INFORMATION -->
+        <fieldset>
+          <legend><strong>Requester Information</strong></legend>
+          <!-- Own addition: Full name -->
+          <p>
+            <label>Full Name <br />
+              <input name="name" type="text" placeholder="Surname First name" size="30"
+              required title="Full name is required" minlength="3"/>
+            </label>
+          </p>
+          <!-- Requester PID -->
+          <p>
+            <label>PID <br />
+              <input name="PID" type="text" placeholder="Enter your PID" size="30"
+              required title="Enter your Virginia Tech PID" pattern="[A-Za-z]{3,}"> <!-- TODO Change the size & clarify placeholder-->
+            </label>
+          </p>
+
+          <!-- Reguester email -->
+          <p>
+            <label>Email <br />
+              <input name="email" type="email" placeholder="pid@vt.edu" size="30" required title="Please enter a valid email address"/>
+            </label>
+          </p>
+          <!-- Requester phone number -->
+          <p>
+            <label>Phone number <br />
+              <input name="phone" type="tel" placeholder="Enter your phone number" size="30" required title="Please enter your phone number" />
+            </label>
+          </p>
+        </fieldset>
+
+        <br />
+
+        <!-- REQUEST INFORMATION -->
+        <fieldset>
+          <legend><strong>Request Information</strong></legend>
+          <!-- Request date and time -->
+          <p>
+            <label>Request date and time: <br />
+              <input type="datetime-local" name="request-time" required title="Input request date and time"/>
+            </label>
+          </p>
+          <!-- Requested semester -->
+          <p> <!-- Year drow-down -->
+            <label>Requested year: <br />
+              <select name="year" required>
+                <option selected>2016</option>
+                <option>2017</option>
+              </select>
+            </label>
+          </p>
+
+          <p> <!-- Semester radio buttons -->
+            <strong>Semester</strong> <br />
+            <label>
+              <input name="semester" type="radio" value="spring" checked required/>
+            </label> Spring<br />
+            <label>
+              <input name="semester" type="radio" value="summer1" checked required/>
+            </label> Summer I<br />
+            <label>
+              <input name="semester" type="radio" value="summer2" checked required/>
+            </label> Summer II<br />
+            <label>
+              <input name="semester" type="radio" value="fall" checked required/>
+            </label> Fall<br />
+            <label>
+              <input name="semester" type="radio" value="winter" checked required/>
+            </label> Winter
+          </p>
+
+          <!-- Requested CRN number -->
+          <!--
+            Student requests are entered via Hokie SPA by each student using the CRN for a specific section.
+            The CRN is a unique five-digit identifier with the first digit representing the numeric code for the term:
+            9 = Fall
+            1 = Spring
+            6 = Summer I
+            7 = Summer II
+          -->
+          <p>
+            <label>Requested CRN number <br />
+              <input type="text" placeholder="Course request number" size="27" list="crn-list"
+                required title="CRN is required" pattern="[0-9]{5}"/>
+              <datalist id="crn-list">
+                <option value="90876">
+                <option value="95345">
+                <option value="93496">
+                <option value="91235">
+                <option value="92695">
+                <option value="14599">
+                <option value="10657">
+                <option value="19068">
+                <option value="10754">
+                <option value="12378">
+                <option value="12085">
+                <option value="14054">
+                <option value="10758">
+                <option value="69345">
+                <option value="60235">
+                <option value="63493">
+                <option value="75403">
+                <option value="70345">
+                <option value="70204">
+              </datalist>
+            </label>
+          </p>
+
+          <!-- Reason for request -->
+          <p>
+            Please speficity a reason/s for the force-add request: <br />
+            <label>
+              <input name="reason" type="checkbox" value="full" />
+            </label>The class is full. <br />
+            <label>
+              <input name="reason" type="checkbox" value="prereqs waived" />
+            </label>Prereqs need to be waived.
+          </p>
+        </fieldset>
+
+        <div class="submission-disclaimer">
+          <p>
+            <strong>Before submitting the form</strong>
+          </p>
+          <p>
+            Please make sure that you've filled all the fields and all the information is correct and up-to-date. <br />
+            Make sure to double-check especially your<strong><em> PID, email and phone number</em></strong> and <strong><em>course request number</em></strong>.
+          </p>
+          <p>
+            Request containing incorrect information cannot be processed efficiently or at all.
+          </p>
+        </div>
+
+        <p class="buttons">
+          <input type="submit" value="Submit" />
+          <input type="reset" value="Reset"  />
+        </p>
+
+
+      </form>
+    </main>
+
+  </body>
+</html>
