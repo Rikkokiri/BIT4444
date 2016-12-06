@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tokyo Olympics Countdown</title>
+
+  <meta name="author" content="Pilvi Rajala" />
+  <meta charset="utf-8" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="HW4-styles/olympicsCountdown.css" />
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet">
+
+  <!-- JavaScript -->
+  <script>
+
+    function calculateRemainingTime(enddate){
+
+      // Difference between the two days in milliseconds
+      var timeLeft = Date.parse(enddate) - Date.parse(new Date());
+
+      //var weeks = Math.floor( (timeLeft) / (1000 * 60 * 60 * 24 * 7));
+      var days = Math.floor( (timeLeft / (1000 * 60 * 60 * 24))); //milliseconds * seconds * minutes * hours
+      var hours = Math.floor( (timeLeft / (1000 * 60 * 60)) % 24);
+      var minutes = Math.floor( (timeLeft / (1000 * 60)) % 60);
+      var seconds = Math.floor( (timeLeft / 1000) % 60 );
+
+      //Return the values as an object
+      return {
+        'timeLeft' : timeLeft,
+        //'weeks' : weeks,
+        'days' : days,
+        'hours' : hours,
+        'minutes' : minutes,
+        'seconds' : seconds
+      };
+    }
+
+
+    function startCountdown(countdownID, endtime){
+
+      //Get the element where the countdown is located
+      var countdownElement = document.getElementById(countdownID);
+
+      var daySpan = document.getElementById('countdown-days');
+      var hourSpan = document.getElementById('countdown-hours');
+      var minuteSpan = document.getElementById('countdown-minutes');
+      var secondSpan = document.getElementById('countdown-seconds');
+
+
+      function updateCountdown(){
+
+        var timeInformation = calculateRemainingTime(endtime);
+
+        //weekSpan.innerHTML = timeInformation.weeks;
+        daySpan.innerHTML = timeInformation.days;
+        hourSpan.innerHTML = ('0' + timeInformation.hours).slice(-2);
+        minuteSpan.innerHTML = ('0' + timeInformation.minutes).slice(-2);
+        secondSpan.innerHTML = ('0' + timeInformation.seconds).slice(-2);
+
+        //If the end time has been reached, stop the countdown
+        if( timeInformation.timeLeft <= 0){
+          clearInterval(countdownInterval);
+        }
+      }
+
+      //Start countdown
+      updateCountdown();
+      var countdownInterval = setInterval(updateCountdown, 1000);
+
+    }
+
+
+    function imageOver(){
+      document.getElementById('changing-image').src = "HW4-resources/tokyo-2020-olympic-games.gif";
+    }
+
+
+    function imageOut(){
+      document.getElementById('changing-image').src = "HW4-resources/tokyo-runner.jpg";
+    }
+
+
+    function resultsLinkAlert(event){
+      event.preventDefault();
+
+      if(confirm('The Olympic Games have not started yet. \n Are you sure you want to continue?')){
+        window.location = this.href;
+      }
+    }
+
+
+    function init(){
+      // Set a valid end date for the counter
+      var countdownEnd = '2020-07-24T19:00';
+      //Call startCountdown(countdownID, endtime);
+      startCountdown("countdown-div", countdownEnd);
+
+      //Add event listeners to the changing image
+      document.getElementById('changing-image').addEventListener("mouseover", imageOver, false);
+      document.getElementById('changing-image').addEventListener("mouseout", imageOut, false);
+
+      //Leavealert event listener
+      document.getElementById('olympic-results').addEventListener("click", resultsLinkAlert, false);
+
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+
+  </script>
+
+</head>
+<body>
+
+  <header>
+    <h1 class="header-title">Tokyo Olympics 2020 Countdown</h1>
+  </header>
+
+  <main>
+
+    <img id="changing-image" src="HW4-resources/tokyo-runner.jpg" height="200" alt="Tokyo Olympics 2020"/>
+
+    <p>The next Olympic games will be held in Tokyo, Japan from July 24th to August 9th 2020.</p>
+
+    <p>
+      <a id="olympic-results" href="https://www.olympic.org/olympic-results">RESULTS</a>
+    </p>
+
+    <div id="countdown-div">
+
+      <div>
+        <span id="countdown-days"></span>
+        <div class="time-unit">DAYS</div>
+      </div>
+
+      <div>
+        <span id="countdown-hours"></span>
+        <div class="time-unit">HOURS</div>
+      </div>
+
+      <div>
+        <span id="countdown-minutes"></span>
+        <div class="time-unit">MINUTES</div>
+      </div>
+
+      <div>
+        <span id="countdown-seconds"></span>
+        <div class="time-unit">SECONDS</div>
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

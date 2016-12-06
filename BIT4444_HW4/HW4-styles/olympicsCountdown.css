@@ -1,0 +1,69 @@
+/*
+@author Pilvi Rajala (piraj)
+*/
+
+html, body {
+  /* Remove whitespace around the header */
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 40px;
+  font-family: 'Lato', sans-serif;
+}
+
+header {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: navy;
+}
+
+.header-title {
+  font-family: 'Unica One', sans-serif;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: white;
+}
+
+/* The countdown timer */
+#countdown-div {
+  text-align: center;
+  margin-top: 25px;
+}
+
+#countdown-div > div {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  margin: 8px;
+  background-color: navy;
+  color: white;
+  border-radius: 50%;
+  font-family: 'Unica One', sans-serif;
+
+}
+
+#countdown-div > div > span {
+  display: inline-block;
+  line-height: 60px;
+  padding-top: 15px;
+  font-size: 35px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.time-unit {
+  font-size: 15px;
+}
+
+#olympic-results {
+  font-size: 20px;
+}

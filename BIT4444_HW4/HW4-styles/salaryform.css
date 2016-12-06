@@ -1,0 +1,35 @@
+/*
+@author Pilvi Rajala (piraj)
+@version October 11th 2016
+*/
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background-color: #3399ff;
+  height: 100%;
+
+}
+
+main {
+  height: 100%;
+  width: 50%;
+  padding-left: 75px;
+  padding-right: 75px;
+  padding-top: 50px;
+  /*padding-bottom: 50px;*/
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  border-left: 3px solid #3366cc;
+  border-right: 3px solid #3366cc;
+  font-family: 'Raleway', sans-serif;
+  background-color: #ffffff;
+}
+
+h2 {
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+}

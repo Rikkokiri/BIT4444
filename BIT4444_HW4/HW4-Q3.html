@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Client-Side Input Validation</title>
+
+    <meta charset="utf-8" />
+    <meta name="author" content="Pilvi Rajala" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="HW4-styles/salaryform.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
+
+    <script src="jquery-3.1.1.min.js"></script>
+		<script type="text/javascript">
+
+      function checkFormOnChange(event){
+        var formObject = document.forms[0];
+
+        checkName(formObject.fullName.value);
+        checkAddress(formObject.address.value);
+        radiobuttonUnchecked(formObject.coop);
+        checkSalaryInput(formObject.salary.value);
+      }
+
+      function checkFormOnSubmit(event){
+
+        var formObject = document.forms[0];
+
+        var output = "";
+        var noErrors = true;
+
+        //Check that the applicant has entered their name
+        if(checkName(formObject.fullName.value)){
+          noErrors = false;
+          output += "- Please provide your name.\n"
+        }
+
+        //Check that the applicant has entered their address
+        if(checkAddress(formObject.address.value)){
+          noErrors = false;
+          output += "- Please provide your address.\n";
+        }
+
+        //Check co-op radio buttons
+        if(radiobuttonUnchecked(formObject.coop)){
+          //Neither of the radio buttons was selected
+          noErrors = false;
+          output += "- Please choose the co-op option.\n";
+        }
+
+        //Check that salary was entered and is a positive number
+        if(checkSalaryInput(formObject.salary.value)){
+          noErrors = false;
+          output += "- Please enter your desired starting salary.\n";
+        }
+
+        //If there's an error/errors in the form, we have to stop the form from being submitted
+        if(noErrors == false){
+          alert("Please correct the errors on the page:\n" + output);
+
+          //This is going to stop the form submit action
+          event.preventDefault();
+
+        }
+
+        //Prevent the user from leaving the page if the form contains errors
+        //Not completely tough, a dialog pops up asking whether user wants to leave.
+        window.onbeforeunload = function(){
+          if(noErrors == false){
+            return "Are you sure you want to navigate away?";
+          }
+        }
+
+      }
+
+      function checkName(name){
+        if(name == ""){
+          nameError = true;
+
+          //Change label to red
+          $("#name-label").css("color", "red");
+
+          //...and show an error message below the input (if the error message doesn't already exist)
+          if($("#nameError").length <= 0){
+            $("input[name='fullName']").after("<br><span id='nameError'>Please enter a name</span>");
+            $("#nameError").css("color", "red");
+          }
+
+        } else {
+          nameError = false;
+        }
+
+        if(nameError == false){
+          //Name entered, remove the error
+          $("#nameError").remove();
+          //Reset the label colour to default stylesheet colour
+          $("#name-label").css("color", "");
+        }
+        return nameError;
+      }
+
+
+      //Check that the applicant has entered their address
+      function checkAddress(address){
+
+        if(address == ""){
+          addressError = true;
+
+          //Change label to red
+          $("#address-label").css("color", "red");
+
+          //...and show an error message below the input (if the error message doesn't already exist)
+          if($("#addressError").length <= 0){
+            $("input[name='address'], textarea").after("<br><span id='addressError'>Please enter an address</span>");
+            $("#addressError").css("color", "red");
+          }
+
+        } else {
+          addressError = false;
+        }
+
+        if(addressError == false){
+          //Address entered, remove the error message
+          $("#addressError").remove();
+          //Reset the label colour to default stylesheet colour
+          $("#address-label").css("color", "");
+        }
+        return addressError;
+      }
+
+
+      function radiobuttonUnchecked(rbObject){
+        //Return true if all radio buttons are not checked
+        var unchecked = true;
+
+        for(i = 0; i < rbObject.length; i++){
+          if(rbObject[i].checked){
+            unchecked = false;
+            break;
+          }
+        }
+        //If radio buttons are not checked...
+        if(unchecked == true){
+          //Change label to red
+          $("#coop-label").css("color", "red");
+          //...and display an error message below the radio buttons (if error message doesn't already exist)
+          if($("#unchecked").length <= 0){
+            $("#coopRadioGroup").after("<br><span id='unchecked'>Please choose the co-op option</span>");
+            $("#unchecked").css("color", "red");
+          }
+        }
+
+        if(unchecked == false){
+          //Co-op button chose, remove the error message
+          $("#unchecked").remove();
+          //Reset the label colour to default stylesheet colour
+          $("#coop-label").css("color", "");
+        }
+
+        //Unchecked will be true. None of the radio button objects are checked.
+        return unchecked;
+      }
+
+
+      //Check that the salary was entered and it's a positive number
+      function checkSalaryInput(salaryInput){
+        var salaryError = false;
+        var errorMessage = "";
+
+        if(salaryInput == ""){
+          salaryError = true;
+          errorMessage = "Please enter a starting salary";
+        } else if(isNaN(salaryInput)){
+          salaryError = true;
+          errorMessage = "Please enter a number";
+        } else if(Number(salaryInput) < 0){
+          salaryError = true;
+          errorMessage = "Please enter a positive number";
+        } else {
+          salaryError = false;
+        }
+
+        if(salaryError == true){
+          //Change label to red
+          $("#salary-label").css("color", "red");
+
+          //...and show an error message below the input (if error message doesn't already exist)
+          if($("#salaryError").length <= 0){
+            $("input[name='salary']").after("<br><span id='salaryError'></span>");
+            $("#salaryError").css("color", "red");
+          }
+          //Update the error message
+          $("#salaryError").text(errorMessage);
+        }
+
+        //If there's no salary error, remove the possible error message
+        if(salaryError == false){
+          //Valid salary value entered, remove the error message
+          $("#salaryError").remove();
+          //Reset the label colour to default stylesheet colour
+          $("#salary-label").css("color", "");
+        }
+
+        return salaryError;
+      }
+
+      function init(){
+
+        //var salaryForm = document.forms[0];
+        var salaryForm = document.getElementsByTagName("form")[0];
+        salaryForm.addEventListener("submit", checkFormOnSubmit);
+
+        //Change event fires whenever user makes changes to the form
+        salaryForm.addEventListener("change", checkFormOnChange);
+
+      }
+
+
+      document.addEventListener("DOMContentLoaded", init);
+
+		</script>
+	</head>
+
+	<body>
+	   <main>
+       <h2>Please enter all the desired information</h2>
+
+       <form name="myForm" method="post" action="success.html">
+         <div>Supply your name and address</div>
+         <br />
+
+         <strong id="name-label">Full Name:</strong><br />
+         <input type="text" name="fullName" size="20" /><br />
+         <br />
+
+         <strong id="address-label">Address:</strong><br/>
+         <textarea name="address" rows="3" cols="25"></textarea><br />
+         <br />
+
+         <div id="coop-label">Are you a co-op?</div>
+         <span id="coopRadioGroup">
+           <input type="radio" name="coop" value="yes" />Yes <br />
+           <input type="radio" name="coop" value="no" />No
+         </span>
+         <br />
+         <br />
+
+         <div id="salary-label">What is your desired starting salary; enter a number greater than zero</div>
+         <input type="text" name="salary" size="20" /><br />
+         <br />
+
+         <input type="submit" name="button1" value="Submit" />
+       </form>
+     </main>
+	</body>
+</html>

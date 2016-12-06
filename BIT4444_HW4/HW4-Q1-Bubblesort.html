@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bubble Sort</title>
+
+  <meta name="author" content="Pilvi Rajala" />
+  <meta charset="utf-8" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="HW4-styles/bubblesort.css" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+  <script src="jquery-3.1.1.min.js"></script>
+  <script>
+
+    //BUBBLESORT
+    function bubbleSort(unsortedArray){
+
+      var itemsToCompare = unsortedArray.length;
+
+      //Print the unsorted array to the user:
+      $("#original-array").append("The unsorted array you entered:<br>" + unsortedArray.join(', '));
+
+      $("#bubblesort-output").append("The sorting process:");
+
+      for(index = 0; index < unsortedArray.length; index++){
+        firstCompare = 0;
+        secondCompare = firstCompare + 1;
+        itemsToCompare = unsortedArray.length - index;
+
+        while(secondCompare < itemsToCompare){
+
+          if(unsortedArray[firstCompare] < unsortedArray[secondCompare]){
+            //Swap the numbers
+            var temp = unsortedArray[firstCompare];
+            unsortedArray[firstCompare] = unsortedArray[secondCompare];
+            unsortedArray[secondCompare] = temp;
+          }
+
+          //Look at the next pair
+          firstCompare = secondCompare;
+          secondCompare = firstCompare + 1;
+        }
+        var arrayWithSpaces = unsortedArray.join(', ');
+        $("#bubblesort-output").append("<br>Iteration " + index + ":   " + unsortedArray.join(', '));
+
+      }
+
+      return unsortedArray;
+    }
+
+    function init(){
+      //Get the user input
+      var numberArray = new Array();
+      inputNumber = 0;
+
+      do {
+        var inputNumber = window.prompt("Input a number. (Write 'end' to finish inputting numbers.)");
+
+        //Check whether the input value is a number
+        if(!isNaN(inputNumber)){
+          //Input is a number, add it to the array
+          numberArray.push(Number(inputNumber));
+
+        //Otherwise display an error message and ignore the input value
+        } else {
+          if(inputNumber != "end"){
+            window.alert(inputNumber + " was not a valid number was not saved.");
+          }
+        }
+      } while(inputNumber != "end");
+
+      //After the user is done inputting the numbers, call the bubbleSort function
+      var sortedArray = bubbleSort(numberArray);
+
+      $("#sorted-array").append("The sorted array:<br>" + sortedArray.join(', '));
+      $("#sorted-array").css("font-weight", "bold");
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+
+  </script>
+</head>
+<body>
+  <main>
+    <h1>BUBBLESORT</h1>
+
+    <p>The script sorts the numbers in order from the largest number to the smallest number using
+    the Bubble Sort method.</p>
+    <p id="original-array"></p>
+    <p id="bubblesort-output"></p>
+    <p id="sorted-array"></p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tokyo Olympics Countdown</title>
+  <meta name="author" content="Pilvi Rajala" />
+  <meta charset="utf-8" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="HW4-styles/olympicsCountdown-jQuery.css" />
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+  <script src="jquery-3.1.1.min.js"></script>
+  <script>
+
+    //The document ready event
+    $(function(){
+
+      //Set interval (1 second) for the countdown
+      setInterval(countdown, 1000);
+
+      //Timer font changes color on click
+      $("#countdown-div").click(changeColor);
+
+      //Clicking image fades it out and in
+      $("#changing-image").click(fadeImage);
+
+      //Swap image when the cursor enters the image
+      $("#changing-image").mouseenter(function(){
+        $(this).attr("src", "HW4-resources/tokyo-runner.jpg");
+      });
+
+      //Swap image back when the cursor leaves the image
+      $("#changing-image").mouseleave(function(){
+        $(this).attr("src", "HW4-resources/tokyo-2020-olympic-games.gif");
+      });
+
+    })
+
+    // COUNTDOWN TIMER
+    function countdown(){
+
+      var enddate = '2020-07-24T19:00';
+      // Difference between the two dates in milliseconds
+      var difference = Date.parse(enddate) - Date.parse(new Date());
+
+      var days = Math.floor( (difference / (1000 * 60 * 60 * 24))); //milliseconds * seconds * minutes * hours
+      var hours = Math.floor( (difference / (1000 * 60 * 60)) % 24);
+      var minutes = Math.floor( (difference / (1000 * 60)) % 60);
+      var seconds = Math.floor( (difference / 1000) % 60 );
+
+      $("#countdown-days").text(days);
+      $("#countdown-hours").text(("0" + hours).slice(-2));
+      $("#countdown-minutes").text(("0" + minutes).slice(-2));
+      $("#countdown-seconds").text(("0" + seconds).slice(-2));
+
+    }
+
+    //Change color by click
+    function changeColor(){
+
+      //Change from red -> blue -> green -> back to red...
+      if($("#countdown-div").hasClass("red")){
+        $("#countdown-div").removeClass("red").addClass("blue");
+      }
+      else if($("#countdown-div").hasClass("blue")){
+        $("#countdown-div").removeClass("blue").addClass("green");
+      }
+      else if($("#countdown-div").hasClass("green")){
+        $("#countdown-div").removeClass("green").addClass("red");
+      }
+      else {
+        $("#countdown-div").addClass("red");
+      }
+
+    }
+
+    //Fade image out on click and then fade it back when clicked again
+    function fadeImage(){
+      var opacity = $("#changing-image").css("opacity");
+
+      if(opacity != 0){
+        $("#changing-image").fadeTo('medium', 0);
+      } else {
+        $("#changing-image").fadeTo('medium', 1);
+      }
+    }
+
+  </script>
+
+</head>
+<body>
+
+  <header>
+    <h1 class="header-title">Tokyo Olympics 2020 Countdown</h1>
+  </header>
+
+  <main>
+
+    <img id="changing-image" src="HW4-resources/tokyo-2020-olympic-games.gif" height="200" alt="Tokyo Olympics 2020"/>
+
+    <p>The next Olympic games will be held in Tokyo, Japan from July 24th to August 9th 2020.</p>
+
+    <div id="countdown-div">
+
+      <div>
+        <span id="countdown-days"></span>
+        <div class="time-unit">DAYS</div>
+      </div>
+
+      <div>
+        <span id="countdown-hours"></span>
+        <div class="time-unit">HOURS</div>
+      </div>
+
+      <div>
+        <span id="countdown-minutes"></span>
+        <div class="time-unit">MINUTES</div>
+      </div>
+
+      <div>
+        <span id="countdown-seconds"></span>
+        <div class="time-unit">SECONDS</div>
+      </div>
+
+    </div>
+
+  </main>
+</body>
+</html>

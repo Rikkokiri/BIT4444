@@ -1,0 +1,83 @@
+/*
+@author Pilvi Rajala (piraj)
+*/
+
+
+/* Task specific style rules */
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.green {
+  color: green;
+}
+
+/* General page styling */
+
+html, body {
+  /* Remove whitespace around the header */
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 40px;
+  font-family: 'Lato', sans-serif;
+}
+
+header {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: navy;
+}
+
+.header-title {
+  font-family: 'Chewy', sans-serif;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: white;
+}
+
+/* The countdown timer */
+#countdown-div {
+  text-align: center;
+  margin-top: 25px;
+}
+
+#countdown-div > div {
+  display: inline-block;
+  width: 100px;
+  padding: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: 'Chewy', sans-serif;
+}
+
+.time-unit {
+  font-size: 14px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+#countdown-div > div > span {
+  display: inline-block;
+  width: 75px;
+  height: 40px;
+  padding: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  border-bottom: 2px solid;
+}
