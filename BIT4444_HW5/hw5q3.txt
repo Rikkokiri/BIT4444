@@ -1,0 +1,58 @@
+Q3.MySQL Questions [24 points]
+Use the Northwind database schema and generate the following SQL statemnets:
+
+@author Pilvi Rajala (piraj)
+
+1. List the product name and supplier id for all products that cost more than $20.
+
+  SELECT ProductName, SupplierID
+  FROM Products
+  WHERE UnitPrice > 20
+
+2. List all products whose names start with letter "c" and are not discontinued.
+
+  SELECT ProductName
+  FROM Products
+  WHERE ProductName like 'c%' AND Discontinued = '0'
+
+3. List all supplier names, the number of products that each supplier provides,
+   and the average price for the products provided by the same supplier.
+
+   SELECT s.CompanyName, COUNT(p.ProductID) AS numberOfProducts, AVG(p.UnitPrice) AS averagePrice
+   FROM Suppliers AS s, Products AS p
+   WHERE s.SupplierID = p.SupplierID
+   GROUP BY p.SupplierID
+
+4. Find all suppliers' name, city, and country for those who provide non-discontinued products.
+
+    SELECT CompanyName, City, Country
+    FROM Suppliers
+    WHERE SupplierID IN  (SELECT SupplierID
+                          FROM Products
+                          WHERE Discontinued = '0')
+
+5. List all suppliers who provide at least two different products.
+
+    SELECT s.CompanyName
+    FROM Suppliers AS s, Products AS p
+    WHERE s.SupplierID = p.SupplierID
+    GROUP BY p.SupplierID
+    HAVING COUNT(p.ProductID) > 1
+
+6. Add a new product record to the products table. ProductID, productName,
+   SupplierID, and CategoryID are mandatory fields
+
+   INSERT INTO Products(ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, Discontinued)
+   VALUES (666, 'Suspicious Candy', 1, 3, '0.3 kg', 3.5, 300, 0)
+
+
+7. Increase the reorder level by 20% and reduce the prices by 10% for all products
+
+   UPDATE Products
+   SET ReorderLevel = ReorderLevel * 1.2, UnitPrice = UnitPrice * 0.9
+
+
+8. Delete product records for those discontinued products.
+
+   DELETE FROM Products
+   WHERE Discontinued = 1
