@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <!--
+  DesignanHTMLpage,display.html,that has two hyperlinks on the top of the page.
+  The two hyperlink texts are "Suppliers" and "Products". Also add a dropdown input
+  list for supplierid and another dropdown input list for productid. (10 pts)
+  -->
+
+  <head>
+    <title>BIT4444 Homework 7 - Ajax with JavaScript, jQuery &amp; PHP</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Pilvi Rajala" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="display.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="jquery-3.1.1.min.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+
+      function displaySuppliers(){
+        var url = "displaySuppliers.php";
+        displayTable(url);
+      }
+
+      function displayProducts(){
+        var url = "displayProducts.php";
+        displayTable(url);
+      }
+
+      function removeContent(){
+        document.getElementById("content-area").innerHTML = "";
+      }
+
+      function displayTable(contentURL){
+        var url = contentURL;
+        var asyncRequest;
+
+        try{
+          //Create new Ajax request object
+          asyncRequest = new XMLHttpRequest()
+
+          asyncRequest.onreadystatechange = stateChange;
+          asyncRequest.open('GET', url, true);
+          asyncRequest.send(null);
+
+        } catch(exception){
+          alert("Ajax request failed");
+        }
+
+        function stateChange(){
+          //The function will be executed if request status changes to completed
+
+          if(asyncRequest.readyState == 4 && asyncRequest.status == 200){
+            document.getElementById("content-area").innerHTML = asyncRequest.responseText;
+          }
+        }
+      }
+
+      function populateSelect(selectID, min, max){
+
+        var minLimit = min;
+        var maxLimit = max;
+        var select = document.getElementById(selectID);
+
+        for (var i = minLimit; i <= maxLimit; i++){
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i;
+            select.appendChild(opt);
+        }
+      }
+
+      //------ Q1 - PART 4 ---------------------------
+
+      //The document ready event fires after the document is finished loading
+      $(function(){
+
+        //Add listener for the supplier id drop down menu
+        $("#select-supplier-id").change(function(){
+          var id = $( "#select-supplier-id" ).val();
+
+          $.ajax({
+            url: "getSupplier.php?id="+id,
+            async: true,
+            success: function(result) {
+              $("#supplier-details-area").html(result);
+            }
+          })
+
+        });
+
+        //Add listener for the product id drop down menu
+        $("#select-product-id").change(function(){
+          var id = $( "#select-product-id" ).val();
+          console.log("Product id selected " + id);
+
+          $.ajax({
+            url: 'getProduct.php?id='+id,
+            async: true,
+            success: function(result) {
+              $("#product-details-area").html(result);
+            }
+          })
+
+        });
+
+      });
+
+      //end: PART 4 ----------------------------------
+
+      //Run when the page is loaded
+      function init(){
+        //Add event listeners to links
+
+        //Show tables when mouse is over the link
+        document.getElementById("suppliers").addEventListener("mouseover", displaySuppliers);
+        document.getElementById("products").addEventListener("mouseover", displayProducts);
+
+        //Remove the table when the mouse leaves the link
+        document.getElementById("suppliers").addEventListener("mouseleave", removeContent);
+        document.getElementById("products").addEventListener("mouseleave", removeContent);
+
+        //Populate select elements
+        populateSelect("select-supplier-id", 0, 29);
+        populateSelect("select-product-id", 0, 77);
+
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+
+    </script>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div id="suppliers">
+        <a id="suppliers-link" href="">SUPPLIERS</a>
+      </div>
+      <div id="products">
+        <a id="products-link" href="">PRODUCTS</a>
+      </div>
+
+      <div id="select-supplier">
+        <span>Select supplier ID</span>
+        <select id="select-supplier-id" name="supplierID">
+        </select>
+      </div>
+      <div id="select-product">
+        <span>Select product ID</span>
+        <select id="select-product-id" name="productID">
+        </select>
+      </div>
+    </div>
+
+    <div id="product-details-area">
+      <!-- The deatails about a specific product will be shown here -->
+      &nbsp;
+    </div>
+
+    <div id="supplier-details-area">
+      <!-- The deatails about a specific supplier will be shown here -->
+      &nbsp;
+    </div>
+
+    <div id="content-area">
+      <!-- Content will be displayed here -->
+      &nbsp;
+    </div>
+
+  </body>
+</html>

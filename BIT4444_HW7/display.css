@@ -1,0 +1,57 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin-left: auto;
+  margin-right: auto;
+  font-family: sans-serif;
+}
+
+div.container {
+  width: 100%;
+  height: 70px;
+  background-color: green;
+}
+
+#suppliers, #products {
+  display: inline-block;
+  padding: 20px;
+}
+
+#suppliers {
+  margin-left: 50px;
+}
+
+#suppliers:hover, #products:hover {
+  background-color: green;
+}
+
+#select-supplier, #select-product {
+  display: inline-block;
+}
+
+div span {
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+}
+
+select {
+  width: 50px;
+  padding: 2px;
+  border: 0;
+  border-radius: 0;
+}
+
+#product-details-area, #supplier-details-area {
+  margin: 10px;
+}
+
+div a {
+  font-size: 25px;
+  font-family: 'Lato', sans-serif;
+  text-decoration: none;
+  color: white;
+}

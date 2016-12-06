@@ -1,0 +1,43 @@
+/*
+* BIT4444 - Homework 7
+* @author Pilvi Rajala (piraj)
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body { /* TODO Adjust style */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  text-align: center;
+  font-family: sans-serif;
+  /*margin: 20px;*/
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+table, th, td {
+  border: 1px solid;
+  font-size: 12px;
+}
+
+th {
+  background-color: #009933;
+}
+
+th, td {
+  padding: 5px 3px;
+}
+
+.oddrow {
+  background-color: lightgrey;
+}
